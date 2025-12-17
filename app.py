@@ -325,68 +325,68 @@ df_corr = load_joined_data()[
     ["user_rating", "anime_avg_rating", "members"]
 ]
 
-df_corr = (
-    df_corr
-    .replace(-1, np.nan)
-    .dropna()
-    .sample(n=min(30_000, len(df_corr)), random_state=42)
-)
-with tab4:
-    joined = load_joined_data()
+# df_corr = (
+#     df_corr
+#     .replace(-1, np.nan)
+#     .dropna()
+#     .sample(n=min(30_000, len(df_corr)), random_state=42)
+# )
+# with tab4:
+#     joined = load_joined_data()
 
-    df_corr = (
-        joined[["user_rating", "anime_avg_rating", "members"]]
-        .replace(-1, np.nan)
-        .dropna()
-        .sample(n=min(30_000, len(joined)), random_state=42)
-    )
+#     df_corr = (
+#         joined[["user_rating", "anime_avg_rating", "members"]]
+#         .replace(-1, np.nan)
+#         .dropna()
+#         .sample(n=min(30_000, len(joined)), random_state=42)
+#     )
 
-    corr = df_corr.corr().reset_index().melt(
-        id_vars="index",
-        var_name="Variable",
-        value_name="Correlation"
-    ).rename(columns={"index": "Feature"})
+#     corr = df_corr.corr().reset_index().melt(
+#         id_vars="index",
+#         var_name="Variable",
+#         value_name="Correlation"
+#     ).rename(columns={"index": "Feature"})
 
-    st.subheader("🔥 Ma trận tương quan dữ liệu")
-    left, center, right = st.columns([1, 3, 1])
+#     st.subheader("🔥 Ma trận tương quan dữ liệu")
+#     left, center, right = st.columns([1, 3, 1])
 
-    with center:
-        heatmap = (
-            alt.Chart(corr)
-            .mark_rect(cornerRadius=6)
-            .encode(
-                x=alt.X("Variable:N", title=None),
-                y=alt.Y("Feature:N", title=None),
-                color=alt.Color(
-                    "Correlation:Q",
-                    scale=alt.Scale(scheme="redblue", domain=[-1, 1]),
-                    legend=alt.Legend(title="Corr")
-                ),
-                tooltip=[
-                    alt.Tooltip("Feature:N"),
-                    alt.Tooltip("Variable:N"),
-                    alt.Tooltip("Correlation:Q", format=".2f")
-                ]
-            )
-            .properties(width=700, height=600)
-        )
+#     with center:
+#         heatmap = (
+#             alt.Chart(corr)
+#             .mark_rect(cornerRadius=6)
+#             .encode(
+#                 x=alt.X("Variable:N", title=None),
+#                 y=alt.Y("Feature:N", title=None),
+#                 color=alt.Color(
+#                     "Correlation:Q",
+#                     scale=alt.Scale(scheme="redblue", domain=[-1, 1]),
+#                     legend=alt.Legend(title="Corr")
+#                 ),
+#                 tooltip=[
+#                     alt.Tooltip("Feature:N"),
+#                     alt.Tooltip("Variable:N"),
+#                     alt.Tooltip("Correlation:Q", format=".2f")
+#                 ]
+#             )
+#             .properties(width=700, height=600)
+#         )
 
-        text = (
-            alt.Chart(corr)
-            .mark_text(fontSize=30, fontWeight="bolder")
-            .encode(
-                x="Variable:N",
-                y="Feature:N",
-                text=alt.Text("Correlation:Q", format=".2f"),
-                color=alt.condition(
-                    "datum.Correlation > 0.5 || datum.Correlation < -0.5",
-                    alt.value("white"),
-                    alt.value("black")
-                )
-            )
-        )
+#         text = (
+#             alt.Chart(corr)
+#             .mark_text(fontSize=30, fontWeight="bolder")
+#             .encode(
+#                 x="Variable:N",
+#                 y="Feature:N",
+#                 text=alt.Text("Correlation:Q", format=".2f"),
+#                 color=alt.condition(
+#                     "datum.Correlation > 0.5 || datum.Correlation < -0.5",
+#                     alt.value("white"),
+#                     alt.value("black")
+#                 )
+#             )
+#         )
 
-        st.altair_chart(heatmap + text, use_container_width=False)
+#         st.altair_chart(heatmap + text, use_container_width=False)
 
 
 # with tab4:

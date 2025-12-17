@@ -311,19 +311,19 @@ with tab3:
 # # ============================
 # # TAB 4: HEATMAP
 # # ============================
-@st.cache_data(show_spinner=False)
-def load_joined_data():
-    return (
-        pd.read_parquet("joined.parquet")
-        .rename(columns={
-            "rating_x": "user_rating",
-            "rating_y": "anime_avg_rating",
-            "name": "anime_name"
-        })
-    )
-df_corr = load_joined_data()[
-    ["user_rating", "anime_avg_rating", "members"]
-]
+# @st.cache_data(show_spinner=False)
+# def load_joined_data():
+#     return (
+#         pd.read_parquet("joined.parquet")
+#         .rename(columns={
+#             "rating_x": "user_rating",
+#             "rating_y": "anime_avg_rating",
+#             "name": "anime_name"
+#         })
+#     )
+# df_corr = load_joined_data()[
+#     ["user_rating", "anime_avg_rating", "members"]
+# ]
 
 # df_corr = (
 #     df_corr

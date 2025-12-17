@@ -4,3 +4,4 @@ rating.csv filter=lfs diff=lfs merge=lfs -text
 *.parquet filter=lfs diff=lfs merge=lfs -text
 *.pkl filter=lfs diff=lfs merge=lfs -text
 item_sim_top100.npz filter=lfs diff=lfs merge=lfs -text
+item_knn_model.joblib filter=lfs diff=lfs merge=lfs -text

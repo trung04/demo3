@@ -317,10 +317,10 @@ def load_joined_data():
     joined.rename(columns={"rating_x":"user_rating","rating_y":"anime_avg_rating","name":"anime_name"},inplace=True)
     return joined
 
-with tab4:
-    joined = load_joined_data()
-    corr = joined[["user_rating", "anime_avg_rating", "members"]].corr()
-    st.subheader("🔥 Heatmap ma trận tương quan")
-    fig, ax = plt.subplots(figsize=(5, 3))
-    sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
-    st.pyplot(fig)
+# with tab4:
+#     joined = load_joined_data()
+#     corr = joined[["user_rating", "anime_avg_rating", "members"]].corr()
+#     st.subheader("🔥 Heatmap ma trận tương quan")
+#     fig, ax = plt.subplots(figsize=(5, 3))
+#     sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm", ax=ax)
+#     st.pyplot(fig)
